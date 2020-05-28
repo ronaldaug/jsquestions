@@ -6,36 +6,36 @@ const app     = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-app.post('/check',(req,res)=>{
+// app.post('/check',(req,res)=>{
 
-    const originCode = req.body.code;
+//     const originCode = req.body.code;
 
-    if(originCode.includes('ilovecoding')){
-        res.status(401).send({
-            'code':401,
-            'message':'Oop, You cannot cheat this!',
-            'data':null
-        });
-    }
+//     if(originCode.includes('ilovecoding')){
+//         res.status(401).send({
+//             'code':401,
+//             'message':'Oop, You cannot cheat this!',
+//             'data':null
+//         });
+//     }
 
-    const plusFunc   = originCode + `\n reverseString('gnidocevoli');`;
+//     const plusFunc   = originCode + `\n reverseString('gnidocevoli');`;
 
-    const data = vm.run(plusFunc);
+//     const data = vm.run(plusFunc);
     
-    if(data !== 'ilovecoding'){
-        res.status(401).send({
-            'code':401,
-            'message':'Oop, incorrect function!',
-             data
-        });
-    }
+//     if(data !== 'ilovecoding'){
+//         res.status(401).send({
+//             'code':401,
+//             'message':'Oop, incorrect function!',
+//              data
+//         });
+//     }
 
-    res.status(200).send({
-        'code':200,
-        'message':'Harray! you passed it!!',
-         data
-    });
-})
+//     res.status(200).send({
+//         'code':200,
+//         'message':'Harray! you passed it!!',
+//          data
+//     });
+// })
 
 
 // listen for requests :)
