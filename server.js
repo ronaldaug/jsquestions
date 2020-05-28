@@ -1,32 +1,42 @@
-// server.js
-// where your node app starts
+const {VM} = require('vm2');
+const vm = new VM();
 
-// we've started you off with Express (https://expressjs.com/)
-// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
 const express = require("express");
-const app = express();
+const app     = express();
+app.use(express.json());
+app.use(express.static('public'));
 
-// our default array of dreams
-const dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
+app.post('/check',(req,res)=>{
 
-// make all the files in 'public' available
-// https://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
+    const originCode = req.body.code;
 
-// https://expressjs.com/en/starter/basic-routing.html
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
-});
+    if(originCode.includes('ilovecoding')){
+        res.status(401).send({
+            'code':401,
+            'message':'Oop, You cannot cheat this!',
+            'data':null
+        });
+    }
 
-// send the default array of dreams to the webpage
-app.get("/dreams", (request, response) => {
-  // express helps us take JS objects and send them as JSON
-  response.json(dreams);
-});
+    const plusFunc   = originCode + `\n reverseString('gnidocevoli');`;
+
+    const data = vm.run(plusFunc);
+    
+    if(data !== 'ilovecoding'){
+        res.status(401).send({
+            'code':401,
+            'message':'Oop, incorrect function!',
+             data
+        });
+    }
+
+    res.status(200).send({
+        'code':200,
+        'message':'Harray! you passed it!!',
+         data
+    });
+})
+
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
