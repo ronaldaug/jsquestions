@@ -16,18 +16,18 @@ app.post('/reverse',(req,res)=>{
     const originCode = req.body.code;
 
     if(originCode.includes('ilovecoding')){
-        res.status(401).send(_message(401,`Opps! you can't cheat this`,{ans:data,next:''}));
+        res.status(401).send(_message(401,`Opps! you can't cheat this`,{ans:'',next:''}));
     }
 
     const plusFunc   = originCode + `\n reverseString('gnidocevoli');`;
 
-    const data = vm.run(plusFunc);
+    const ans = vm.run(plusFunc);
     
-    if(data !== 'ilovecoding'){
-        res.status(401).send(_message(401,`Opps! it's incorrect.`,{ans:data,next:''}));
+    if (ans !== 'ilovecoding'){
+        res.status(401).send(_message(401,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
-    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans:data,next:'qwrfr6uit4r.html'}));
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'qwrfr6uit4r.html'}));
 })
 
 // Q 2
@@ -36,18 +36,18 @@ app.post('/wrap',(req,res)=>{
     const originCode = req.body.code;
 
     if(originCode.includes('ilovecoding')){
-        res.status(401).send(_message(401,`Opps! you can't cheat this`,data));
+        res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
     }
 
     const plusFunc   = originCode + `\n reverseString('gnidocevoli');`;
 
-    const data = vm.run(plusFunc);
+    const ans = vm.run(plusFunc);
     
-    if(data !== 'ilovecoding'){
-        res.status(401).send(_message(401,`Opps! it's incorrect.`,data));
+    if(ans !== 'ilovecoding'){
+        res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
-    res.status(200).send(_message(200,`Harray! it's correct!.`,data));
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:''}));
 })
 
 

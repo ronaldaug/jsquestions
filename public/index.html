@@ -89,17 +89,21 @@ function reverseString(inputStr){
             .then(res=>{
 
               const Res = document.querySelector(".result").innerHTML;
-              const ans = `<p>Your result = ${res.data}</p>`;
-              if(res.data.next){
-                  ans += `<a class="btn btn-sm btn-success" href="${res.data.next}">Go to next lesson </a>`;
-              }
-              Res.innerHTML = ;
-
+              let ans = `<p>Your result = ${res.data}</p>`;
+              
+                // if fail
                 if(res.code !== 200){
                     message('failed',res.message);
+                    Res.innerHTML = ans;
                     return;
                 }
-
+              
+                console.log(res);
+              
+                if(res.data.next){
+                    ans += `<a class="btn btn-sm btn-success" href="${res.data.next}">Go to next lesson &rarr;</a>`;
+                }
+                Res.innerHTML = ans;
                 message('success',res.message);
 
             })
