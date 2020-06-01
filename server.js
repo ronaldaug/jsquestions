@@ -56,7 +56,7 @@ app.post('/wrap',(req,res)=>{
 
 
 // Q 3
-app.post('/wrap',(req,res)=>{
+app.post('/getwords',(req,res)=>{
 
     const originCode = req.body.code;
 
@@ -64,19 +64,19 @@ app.post('/wrap',(req,res)=>{
         res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
     }
 
-    const plusFunc   = originCode + `\n wrapWithStars('[programming] is [the] greatest work');`;    
+    const plusFunc   = originCode + `\n getWords('[programming] is [the] greatest work');`;    
 
     const ans = vm.run(plusFunc);
 
-    const correctAns = `*************<br>*ilovecoding*<br>*************`;
+    const correctAns = ['programming','the'];
   
-  console.log(ans.trim() , correctAns.trim());
-    
-    if(ans.trim() !== correctAns.trim() ){
+    console.log(ans,correctAns);
+  
+    if(ans !== correctAns ){
         res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
-    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'uy4dsaem73.html'}));
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'next.html'}));
 })
 
 // listen for requests :)
