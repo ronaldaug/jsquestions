@@ -36,13 +36,11 @@
 
                 Question 1. Please reverse the string
                 
-                <div class="line"></div>
-
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-3">Input value</div>
                     <div class="col-9"><b>gnidocevoli</b></div>
                 </div>
-
+                <div class="line"></div>
                 <div class="row">
                     <div class="col-3">Expect value</div>
                     <div class="col-9"><b>ilovecoding</b></div>
@@ -55,7 +53,7 @@ function reverseString(inputStr){
 }
                 </div>
                 <div class="result"></div>
-                <button class="mt-4 btn btn-success">Submit</button>
+                <button class="mt-4 btn btn-primary">Submit</button>
             </form>
     </div>
 
@@ -88,8 +86,8 @@ function reverseString(inputStr){
             .then(e=>e.json())
             .then(res=>{
 
-              const Res = document.querySelector(".result").innerHTML;
-              let ans = `<p>Your result = ${res.data}</p>`;
+              const Res = document.querySelector(".result");
+              let ans = `<p>Your result = ${res.data.ans}</p>`;
               
                 // if fail
                 if(res.code !== 200){
@@ -97,9 +95,7 @@ function reverseString(inputStr){
                     Res.innerHTML = ans;
                     return;
                 }
-              
-                console.log(res);
-              
+                            
                 if(res.data.next){
                     ans += `<a class="btn btn-sm btn-success" href="${res.data.next}">Go to next lesson &rarr;</a>`;
                 }
