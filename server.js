@@ -15,7 +15,7 @@ app.post('/check',(req,res)=>{
     const originCode = req.body.code;
 
     if(originCode.includes('ilovecoding')){
-        res.status(401).send(_message(401,`Opps! you can't cheat this`,{}));
+        res.status(401).send(_message(401,`Opps! you can't cheat this`,data));
     }
 
     const plusFunc   = originCode + `\n reverseString('gnidocevoli');`;
@@ -23,10 +23,10 @@ app.post('/check',(req,res)=>{
     const data = vm.run(plusFunc);
     
     if(data !== 'ilovecoding'){
-        res.status(401).send(_message(401,`Opps! it's incorrect.`,{}));
+        res.status(401).send(_message(401,`Opps! it's incorrect.`,data));
     }
 
-    res.status(200).send(_message(200,`Harray! it's correct!.`,{}));
+    res.status(200).send(_message(200,`Harray! it's correct!.`,data));
 })
 
 
