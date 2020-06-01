@@ -44,6 +44,7 @@
                     <div class="col-9"><b>ilovecoding</b></div>
                 </div>
 
+                <div class="message"></div>
                 <div id="editor" class="my-4">
 
 function reverseString(inputStr){
@@ -64,6 +65,8 @@ function reverseString(inputStr){
             editor.session.setMode("ace/mode/javascript");
 
         const JSCourse = document.querySelector("#jscourse");
+      
+      
         JSCourse.addEventListener("submit",e=>{
             e.preventDefault();
 
@@ -81,16 +84,28 @@ function reverseString(inputStr){
             .then(e=>e.json())
             .then(res=>{
 
+                document.querySelector(".result").innerHTML = <p>Your result = ${res.data}</p>
+
                 if(res.code !== 200){
-                    document.querySelector(".result").innerHTML = `<p class="alert alert-danger">${res.message}</p>
-                    <p>Your result = ${res.data}</p>`;
+                    message('failed',res.message);
                     return;
                 }
 
-                document.querySelector(".result").innerHTML = `<p class="alert alert-success">${res.message}</p>
-                <p>Your result = ${res.data}</p>`;
+                message('success',res.message);
+
             })
         })
+      
+      
+      function message(status,msg){
+          const cls = status == 'success'?'alert-success':'alert-danger';
+          document.querySelector(".message").innerHTML = `<p class="alert ${cls}">${msg}</p>`;
+        
+          setTimeout(()=>{
+            document.querySelector(".message").innerHTML = '';
+          },3000)
+                  
+      }
     </script>
 </body>
 </html>
