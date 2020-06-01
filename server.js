@@ -27,7 +27,7 @@ app.post('/reverse',(req,res)=>{
         res.status(401).send(_message(401,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
-    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'qwrfr6uit4r.html'}));
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'qwrfr6uit4.html'}));
 })
 
 // Q 2
@@ -35,7 +35,7 @@ app.post('/wrap',(req,res)=>{
 
     const originCode = req.body.code;
 
-    if(originCode.includes('ilovecoding')){
+    if(originCode.includes('ilovecoding') || originCode.includes('****')){
         res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
     }
 
@@ -43,13 +43,15 @@ app.post('/wrap',(req,res)=>{
 
     const ans = vm.run(plusFunc);
   
+    const correctAns = `*************
+*ilovecoding*
+*************`;
     
-    
-    if(ans !== 'ilovecoding'){
+    if(ans !== correctAns ){
         res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
-    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:''}));
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'uy4dsaem73.html'}));
 })
 
 
