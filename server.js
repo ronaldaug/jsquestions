@@ -39,13 +39,13 @@ app.post('/wrap',(req,res)=>{
         res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
     }
 
-    const plusFunc   = originCode + `\n reverseString('gnidocevoli');`;
+    const plusFunc   = originCode + `\n wrapWithStar('ilovecoding');`;
 
     const ans = vm.run(plusFunc);
   
-    const correctAns = `*************
+    const correctAns = `***********
 *ilovecoding*
-*************`;
+***********`;
     
     if(ans !== correctAns ){
         res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));

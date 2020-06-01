@@ -48,7 +48,7 @@
 
                 <div id="editor" class="my-4">
 
-function get(inputStr){
+function getTheWords(inputStr){
     
 }
                 </div>
@@ -60,59 +60,7 @@ function get(inputStr){
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/theme-tomorrow_night_blue.min.js"></script>
-    <script>
-      
-        let editor = ace.edit("editor");
-        editor.setTheme("ace/theme/tomorrow_night_blue");
-        editor.session.setMode("ace/mode/javascript");
-
-        const JSCourse = document.querySelector("#jscourse");
-      
-      
-        JSCourse.addEventListener("submit",e=>{
-            e.preventDefault();
-
-            const data = {
-                'code':editor.getValue()
-            }
-
-            fetch('/wrap',{
-                method:"post",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify(data)
-            })
-            .then(e=>e.json())
-            .then(res=>{
-
-                document.querySelector(".result").innerHTML = `<p>Your result = ${res.data}</p>`;
-
-                if(res.code !== 200){
-                    message('failed',res.message);
-                    return;
-                }
-
-                message('success',res.message);
-
-            })
-            .catch(err=>{
-               console.log(err)
-                message('failed','Opps! Something went wrong<br> please make sure your function is correct!');
-              
-            })
-        })
-      
-      
-      function message(status,msg){
-          const cls = status == 'success'?'alert-success':'alert-danger';
-          document.querySelector(".message").innerHTML = `<p class="alert ${cls}">${msg}</p>`;
-        
-          setTimeout(()=>{
-            document.querySelector(".message").innerHTML = '';
-          },3000)
-                  
-      }
-    </script>
+    <script>const req_url = 'reverse';</script>
+    <script src="js/main.js"></script>
 </body>
 </html>
