@@ -30,6 +30,9 @@
 <body>
     <div class="center-box">
             <form id="jscourse">
+                
+               <div class="message my-3"></div>
+
                 Question 1. Please reverse the string
                 
                 <div class="line"></div>
@@ -44,7 +47,6 @@
                     <div class="col-9"><b>ilovecoding</b></div>
                 </div>
 
-                <div class="message"></div>
                 <div id="editor" class="my-4">
 
 function reverseString(inputStr){
@@ -60,9 +62,10 @@ function reverseString(inputStr){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/theme-tomorrow_night_blue.min.js"></script>
     <script>
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/tomorrow_night_blue");
-            editor.session.setMode("ace/mode/javascript");
+      
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/tomorrow_night_blue");
+        editor.session.setMode("ace/mode/javascript");
 
         const JSCourse = document.querySelector("#jscourse");
       
@@ -84,7 +87,7 @@ function reverseString(inputStr){
             .then(e=>e.json())
             .then(res=>{
 
-                document.querySelector(".result").innerHTML = <p>Your result = ${res.data}</p>
+                document.querySelector(".result").innerHTML = `<p>Your result = ${res.data}</p>`;
 
                 if(res.code !== 200){
                     message('failed',res.message);
