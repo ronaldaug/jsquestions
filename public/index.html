@@ -78,7 +78,7 @@ function reverseString(inputStr){
                 'code':editor.getValue()
             }
 
-            fetch('/check',{
+            fetch('/reverse',{
                 method:"post",
                 headers:{
                     "Content-Type":"application/json"
@@ -88,7 +88,12 @@ function reverseString(inputStr){
             .then(e=>e.json())
             .then(res=>{
 
-                document.querySelector(".result").innerHTML = `<p>Your result = ${res.data}</p>`;
+              const Res = document.querySelector(".result").innerHTML;
+              const ans = `<p>Your result = ${res.data}</p>`;
+              if(res.data.next){
+                  ans += `<a class="btn btn-sm btn-success" href="${res.data.next}">Go to next lesson </a>`;
+              }
+              Res.innerHTML = ;
 
                 if(res.code !== 200){
                     message('failed',res.message);

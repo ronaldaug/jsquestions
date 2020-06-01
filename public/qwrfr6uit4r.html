@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Online course</title>
+    <title>Wrap with Stars</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.0/materia/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/tomorrow-night-blue.min.css">
     <style>
@@ -34,23 +34,23 @@
                 
                <div class="message my-3"></div>
 
-                Question 1. Please reverse the string
+                Question 2. Please wrap a string with stars (*)
                 
                 <div class="line"></div>
 
                 <div class="row">
                     <div class="col-3">Input value</div>
-                    <div class="col-9"><b>gnidocevoli</b></div>
+                    <div class="col-9"><b>ilovecoding</b></div>
                 </div>
 
                 <div class="row">
                     <div class="col-3">Expect value</div>
-                    <div class="col-9"><b>ilovecoding</b></div>
+                    <div class="col-9"><b>*************<br>*ilovecoding*<br>*************</b></div>
                 </div>
 
                 <div id="editor" class="my-4">
 
-function reverseString(inputStr){
+function wrapWithStar(inputStr){
     
 }
                 </div>
@@ -78,7 +78,7 @@ function reverseString(inputStr){
                 'code':editor.getValue()
             }
 
-            fetch('/check',{
+            fetch('/wrap',{
                 method:"post",
                 headers:{
                     "Content-Type":"application/json"
