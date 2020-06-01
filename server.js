@@ -6,16 +6,16 @@ const app     = express();
 app.use(express.json());
 app.use(express.static('public'));
 
+const _message = (code,message,data) =>{
+    return {code,message,data};
+}
+
 app.post('/check',(req,res)=>{
 
     const originCode = req.body.code;
 
     if(originCode.includes('ilovecoding')){
-        res.status(401).send({
-            'code':401,
-            'message':'Oop, You cannot cheat this!',
-            'data':null
-        });
+        res.status(401).send(_message(401,`Opps! you can't cheat this`,{}));
     }
 
     const plusFunc   = originCode + `\n reverseString('gnidocevoli');`;
@@ -23,18 +23,10 @@ app.post('/check',(req,res)=>{
     const data = vm.run(plusFunc);
     
     if(data !== 'ilovecoding'){
-        res.status(401).send({
-            'code':401,
-            'message':'Oop, incorrect function!',
-             data
-        });
+        res.status(401).send(_message(401,`Opps! it's incorrect.`,{}));
     }
 
-    res.status(200).send({
-        'code':200,
-        'message':'Harray! you passed it!!',
-         data
-    });
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{}));
 })
 
 
