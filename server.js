@@ -39,15 +39,19 @@ app.post('/wrap',(req,res)=>{
         res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
     }
 
-    const plusFunc   = originCode + `\n wrapWithStar('ilovecoding');`;
+    const plusFunc   = originCode + `\n wrapWithStars('ilovecoding');`;    
 
     const ans = vm.run(plusFunc);
-  
-    const correctAns = `***********
+    ans.replace('<br>','\n');
+    ans.replace('<br />','\n');
+
+    const correctAns = `*************
 *ilovecoding*
-***********`;
+*************`;
+  
+  console.log(ans.trim() , correctAns.trim());
     
-    if(ans !== correctAns ){
+    if(ans.trim() !== correctAns.trim() ){
         res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
