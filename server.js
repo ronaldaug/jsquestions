@@ -42,12 +42,8 @@ app.post('/wrap',(req,res)=>{
     const plusFunc   = originCode + `\n wrapWithStars('ilovecoding');`;    
 
     const ans = vm.run(plusFunc);
-    ans.replace('<br>','\n');
-    ans.replace('<br />','\n');
 
-    const correctAns = `*************
-*ilovecoding*
-*************`;
+    const correctAns = `*************<br>*ilovecoding*<br>*************`;
   
   console.log(ans.trim() , correctAns.trim());
     
@@ -58,6 +54,30 @@ app.post('/wrap',(req,res)=>{
     res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'uy4dsaem73.html'}));
 })
 
+
+// Q 3
+app.post('/wrap',(req,res)=>{
+
+    const originCode = req.body.code;
+
+    if(originCode.includes('programming') || originCode.includes('the')){
+        res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
+    }
+
+    const plusFunc   = originCode + `\n wrapWithStars('[programming] is [the] greatest work');`;    
+
+    const ans = vm.run(plusFunc);
+
+    const correctAns = `*************<br>*ilovecoding*<br>*************`;
+  
+  console.log(ans.trim() , correctAns.trim());
+    
+    if(ans.trim() !== correctAns.trim() ){
+        res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
+    }
+
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'uy4dsaem73.html'}));
+})
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
