@@ -18,6 +18,10 @@ app.post('/total',(req,res)=>{
     if(originCode.includes('8')){
         res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
     }
+  
+    if(originCode.includes('3+5') || originCode.includes('5+3')){
+        res.status(400).send(_message(400,`Please use variables.`,{ans:'',next:''}));
+    }
 
     const plusFunc   = originCode + `\n getTotal(3,5);`;    
 
