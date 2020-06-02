@@ -56,27 +56,23 @@ app.post('/wrap',(req,res)=>{
 
 
 // Q 3
-app.post('/getwords',(req,res)=>{
+app.post('/total',(req,res)=>{
 
     const originCode = req.body.code;
 
-    if(originCode.includes('programming') || originCode.includes('the')){
+    if(originCode.includes('8')){
         res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
     }
 
-    const plusFunc   = originCode + `\n getWords('[programming] is [the] greatest work');`;    
+    const plusFunc   = originCode + `\n getTotal(3,5);`;    
 
     const ans = vm.run(plusFunc);
-
-    const correctAns = ['programming','the'];
   
-    console.log(ans,correctAns);
-  
-    if(ans !== correctAns ){
+    if(ans !== 8){
         res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
-    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'next.html'}));
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'hewsse23e5.html'}));
 })
 
 // listen for requests :)
