@@ -69,7 +69,7 @@ app.post('/banned',(req,res)=>{
 
     const correctAns = 'programming is awesome';
       
-    if(ans !== correctAns){
+    if(ans.trim() !== correctAns){
         res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
