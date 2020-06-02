@@ -49,10 +49,5 @@
       
       function message(status,msg){
           const cls = status == 'success'?'alert-success':'alert-danger';
-          document.querySelector(".message").innerHTML = `<p class="alert ${cls}">${msg}</p>`;
-        
-          setTimeout(()=>{
-            document.querySelector(".message").innerHTML = '';
-          },3000)
-                  
+          document.querySelector(".message").innerHTML = `<p class="alert ${cls}">${msg}</p>`;      
       }
