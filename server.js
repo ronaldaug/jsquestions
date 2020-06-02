@@ -11,6 +11,26 @@ const _message = (code,message,data) =>{
 }
 
 // Q 1
+app.post('/total',(req,res)=>{
+
+    const originCode = req.body.code;
+
+    if(originCode.includes('8')){
+        res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
+    }
+
+    const plusFunc   = originCode + `\n getTotal(3,5);`;    
+
+    const ans = vm.run(plusFunc);
+  
+    if(ans !== 8){
+        res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
+    }
+
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'2ewsse23e5.html'}));
+})
+
+// Q 2
 app.post('/reverse',(req,res)=>{
 
     const originCode = req.body.code;
@@ -27,10 +47,32 @@ app.post('/reverse',(req,res)=>{
         res.status(401).send(_message(401,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
-    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'qwrfr6uit4.html'}));
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'3y4dsaem73.html'}));
 })
 
-// Q 2
+// Q 3
+app.post('/banned',(req,res)=>{
+
+    const originCode = req.body.code;
+
+    if(originCode.includes('programming is awesome')){
+        res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
+    }
+
+    const plusFunc   = originCode + `\n bannedWord('yayy! programming is awesome');`;    
+
+    const ans = vm.run(plusFunc);
+
+    const correctAns = 'programming is awesome';
+      
+    if(ans !== correctAns){
+        res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
+    }
+
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'4wrfr6uit4.html'}));
+})
+
+// Q 4
 app.post('/wrap',(req,res)=>{
 
     const originCode = req.body.code;
@@ -51,29 +93,11 @@ app.post('/wrap',(req,res)=>{
         res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
     }
 
-    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'uy4dsaem73.html'}));
+    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'next.html'}));
 })
 
 
-// Q 3
-app.post('/total',(req,res)=>{
 
-    const originCode = req.body.code;
-
-    if(originCode.includes('8')){
-        res.status(400).send(_message(400,`Opps! you can't cheat this`,{ans:'',next:''}));
-    }
-
-    const plusFunc   = originCode + `\n getTotal(3,5);`;    
-
-    const ans = vm.run(plusFunc);
-  
-    if(ans !== 8){
-        res.status(400).send(_message(400,`Opps! it's incorrect.`,{ans,next:''}));
-    }
-
-    res.status(200).send(_message(200,`Harray! it's correct!.`,{ans,next:'hewsse23e5.html'}));
-})
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
